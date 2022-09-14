@@ -1,0 +1,10 @@
+const express = require('express')
+const router = express.Router()
+const expressJoi = require("@escook/express-joi")
+const { add_article_schema,get_idarticles} = require('../schema/article')
+const article_handler = require('../router_handle/article')
+router.post('/add', expressJoi(add_article_schema), article_handler.addArticle)
+router.get('/delete/:idarticles', expressJoi(get_idarticles), article_handler.deleteArticle)
+router.get('/',article_handler.getMyArticle)
+router.get('/id/:idarticles',expressJoi(get_idarticles),article_handler.getIdArticle)
+module.exports = router
